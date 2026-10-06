@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details | Ntlo Botswana</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-mark">N</div>
+                <div class="logo-text">Ntlo<small>BOTSWANA PROPERTY</small></div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Map View</a></li>
+                    <li><a href="properties.html" class="active">Listings</a></li>
+                    <li><a href="agents.html">Agents</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <a href="properties.html" class="nav-cta">List Your Property</a>
+        </div>
+    </header>
+
+    <section style="background: var(--midnight); color: var(--ivory); padding: 60px 40px 40px;">
+        <div style="max-width: 1300px; margin: 0 auto;">
+            <a href="properties.html" style="font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);">
+                <i class="fas fa-arrow-left"></i> Back to Listings
+            </a>
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: end; margin-top: 24px;">
+                <div>
+                    <h1 id="detail-title" style="font-size: clamp(2rem, 4vw, 3.5rem); color: var(--ivory);">Property</h1>
+                    <p id="detail-location" style="color: rgba(247, 243, 236, 0.7); margin-top: 8px;">
+                        <i class="fas fa-map-marker-alt" style="color: var(--gold);"></i> Loading...
+                    </p>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase;">Asking Price</div>
+                    <div id="detail-price" style="font-family: var(--serif); font-size: 2.5rem; color: var(--ivory); margin-top: 4px;">P0</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main style="max-width: 1300px; margin: 0 auto; padding: 60px 40px;">
+        <div id="detail-gallery" style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 60px;">
+            <div id="detail-hero-img" style="aspect-ratio: 16/10; background-size: cover; background-position: center; border-radius: 12px; background-color: #ddd;"></div>
+            <div style="display: grid; grid-template-rows: 1fr 1fr; gap: 16px;">
+                <div id="detail-img-2" style="background-size: cover; background-position: center; border-radius: 12px; background-color: #ddd;"></div>
+                <div id="detail-img-3" style="background-size: cover; background-position: center; border-radius: 12px; background-color: #ddd;"></div>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 60px;">
+            <div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-bottom: 40px; border-bottom: 1px solid var(--border); margin-bottom: 40px;">
+                    <div class="drawer-spec">
+                        <i class="fas fa-bed"></i>
+                        <div class="drawer-spec-value" id="detail-beds">0</div>
+                        <div class="drawer-spec-label">Bedrooms</div>
+                    </div>
+                    <div class="drawer-spec">
+                        <i class="fas fa-bath"></i>
+                        <div class="drawer-spec-value" id="detail-baths">0</div>
+                        <div class="drawer-spec-label">Bathrooms</div>
+                    </div>
+                    <div class="drawer-spec">
+                        <i class="fas fa-car"></i>
+                        <div class="drawer-spec-value" id="detail-parking">0</div>
+                        <div class="drawer-spec-label">Parking</div>
+                    </div>
+                    <div class="drawer-spec">
+                        <i class="fas fa-vector-square"></i>
+                        <div class="drawer-spec-value" id="detail-area">0</div>
+                        <div class="drawer-spec-label">m²</div>
+                    </div>
+                </div>
+
+                <h2 style="font-size: 1.8rem; margin-bottom: 20px;">About this property</h2>
+                <p id="detail-desc" style="color: var(--grey); font-size: 1.02rem; line-height: 1.8; margin-bottom: 24px;"></p>
+
+                <h2 style="font-size: 1.8rem; margin: 40px 0 20px;">Features</h2>
+                <ul id="detail-features" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; color: var(--grey); font-size: 0.95rem;"></ul>
+
+                <h2 style="font-size: 1.8rem; margin: 60px 0 20px;">Location</h2>
+                <div id="detail-map" style="height: 340px; border-radius: 12px; background: #ddd;"></div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <aside style="background: var(--ivory-warm); border: 1px solid var(--border); border-radius: 14px; padding: 32px; height: fit-content; position: sticky; top: 100px;">
+                <span style="font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 12px;">Listing Agent</span>
+                <h3 style="font-size: 1.5rem; margin-bottom: 4px;">Kabelo Sekgoma</h3>
+                <p style="color: var(--grey); font-size: 0.9rem; margin-bottom: 24px;">Senior Property Consultant · Ntlo Botswana</p>
+
+                <div style="border-top: 1px solid var(--border); padding-top: 24px; margin-bottom: 24px;">
+                    <div style="font-family: var(--serif); font-size: 2rem; color: var(--midnight); margin-bottom: 4px;" id="detail-price-2">P0</div>
+                    <div style="font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey);">Monthly from <span id="detail-monthly">P0</span></div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <a href="contact.html" class="btn btn-gold"><i class="fas fa-phone"></i> Call Agent</a>
+                    <a href="https://wa.me/26771234567" class="btn btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="contact.html" class="btn btn-outline"><i class="fas fa-envelope"></i> Email Enquiry</a>
+                </div>
+
+                <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border);">
+                    <h4 style="font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 14px;">Mortgage Calculator</h4>
+                    <div style="display: grid; gap: 10px;">
+                        <label style="font-size: 0.78rem; color: var(--grey);">Deposit (10%)</label>
+                        <input type="number" id="mort-deposit" style="padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-family: var(--mono);" placeholder="0">
+                        <label style="font-size: 0.78rem; color: var(--grey);">Interest Rate %</label>
+                        <input type="number" id="mort-rate" style="padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-family: var(--mono);" value="7.5">
+                        <label style="font-size: 0.78rem; color: var(--grey);">Term (years)</label>
+                        <input type="number" id="mort-years" style="padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-family: var(--mono);" value="20">
+                        <button onclick="calcMortgage()" class="btn btn-gold" style="margin-top: 6px;">Calculate</button>
+                    </div>
+                    <div id="mort-result" style="margin-top: 16px; padding: 16px; background: var(--midnight); color: var(--ivory); border-radius: 8px; display: none;">
+                        <div style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px;">Estimated Monthly</div>
+                        <div style="font-family: var(--serif); font-size: 1.6rem;" id="mort-monthly">P0</div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>Ntlo <span>Botswana</span></h3>
+                    <p>The modern way to find, buy, and sell property in Botswana.</p>
+                    <div class="footer-socials">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>Explore</h4><ul>
+                    <li><a href="index.html">Map View</a></li>
+                    <li><a href="properties.html">Listings</a></li>
+                    <li><a href="agents.html">Agents</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul></div>
+                <div class="footer-col"><h4>Suburbs</h4><ul>
+                    <li><a href="#">Phakalane</a></li>
+                    <li><a href="#">Extension 12</a></li>
+                    <li><a href="#">Block 8</a></li>
+                    <li><a href="#">Broadhurst</a></li>
+                </ul></div>
+                <div class="footer-col"><h4>Contact</h4><ul>
+                    <li>Plot 54321, CBD</li>
+                    <li>Gaborone, Botswana</li>
+                    <li>+267 71 234 567</li>
+                    <li>hello@ntlo.co.bw</li>
+                </ul></div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 NTLO BOTSWANA</span>
+                <span>MADE IN GABORONE 🇧🇼</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
