@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ntlo | Find Your Home in Botswana</title>
+    <meta name="description" content="Ntlo — Botswana's modern property platform. Explore homes for sale across Gaborone on an interactive map.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-mark">N</div>
+                <div class="logo-text">Ntlo<small>BOTSWANA PROPERTY</small></div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Map View</a></li>
+                    <li><a href="properties.html">Listings</a></li>
+                    <li><a href="agents.html">Agents</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <a href="properties.html" class="nav-cta">List Your Property</a>
+        </div>
+    </header>
+
+    <main class="map-page">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search by suburb, e.g. Phakalane">
+            </div>
+
+            <div class="filters-section">
+                <span class="filter-label">Price Range (BWP)</span>
+                <div class="price-range">
+                    <input type="number" id="min-price" class="price-input" placeholder="Min" step="50000">
+                    <input type="number" id="max-price" class="price-input" placeholder="Max" step="50000">
+                </div>
+            </div>
+
+            <div class="filters-section">
+                <span class="filter-label">Bedrooms</span>
+                <div class="filter-chips" id="beds-filter">
+                    <button class="chip active" data-beds="all">Any</button>
+                    <button class="chip" data-beds="2">2+</button>
+                    <button class="chip" data-beds="3">3+</button>
+                    <button class="chip" data-beds="4">4+</button>
+                    <button class="chip" data-beds="5">5+</button>
+                </div>
+            </div>
+
+            <div class="filters-section">
+                <span class="filter-label">Property Type</span>
+                <div class="filter-chips" id="type-filter">
+                    <button class="chip active" data-type="all">All</button>
+                    <button class="chip" data-type="house">House</button>
+                    <button class="chip" data-type="apartment">Apartment</button>
+                    <button class="chip" data-type="townhouse">Townhouse</button>
+                    <button class="chip" data-type="plot">Plot</button>
+                </div>
+            </div>
+
+            <div class="results-header">
+                <div class="results-count"><span id="results-num">0</span> properties</div>
+                <div class="results-sort">Sort: Price</div>
+            </div>
+
+            <div class="property-list" id="property-list"></div>
+        </aside>
+
+        <!-- MAP -->
+        <div class="map-container">
+            <div id="map"></div>
+
+            <div class="map-controls">
+                <button class="map-control-btn" id="reset-map" title="Reset map view">
+                    <i class="fas fa-crosshairs"></i>
+                </button>
+                <button class="map-control-btn" id="toggle-satellite" title="Satellite view">
+                    <i class="fas fa-satellite"></i>
+                </button>
+            </div>
+
+            <!-- Property drawer (slides in when pin clicked) -->
+            <div class="property-drawer" id="property-drawer">
+                <div class="drawer-close" onclick="closeDrawer()">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="drawer-hero" id="drawer-hero">
+                    <div class="drawer-favourite" id="drawer-fav" onclick="toggleFavourite(event)">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+                <div class="drawer-body">
+                    <h2 id="drawer-title">Property Title</h2>
+                    <div class="drawer-location" id="drawer-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Location</span>
+                    </div>
+                    <div class="drawer-price" id="drawer-price">P0</div>
+                    <div class="drawer-specs">
+                        <div class="drawer-spec">
+                            <i class="fas fa-bed"></i>
+                            <div class="drawer-spec-value" id="drawer-beds">0</div>
+                            <div class="drawer-spec-label">Beds</div>
+                        </div>
+                        <div class="drawer-spec">
+                            <i class="fas fa-bath"></i>
+                            <div class="drawer-spec-value" id="drawer-baths">0</div>
+                            <div class="drawer-spec-label">Baths</div>
+                        </div>
+                        <div class="drawer-spec">
+                            <i class="fas fa-car"></i>
+                            <div class="drawer-spec-value" id="drawer-parking">0</div>
+                            <div class="drawer-spec-label">Parking</div>
+                        </div>
+                        <div class="drawer-spec">
+                            <i class="fas fa-vector-square"></i>
+                            <div class="drawer-spec-value" id="drawer-area">0</div>
+                            <div class="drawer-spec-label">m²</div>
+                        </div>
+                    </div>
+                    <p class="drawer-desc" id="drawer-desc">Description...</p>
+                    <div class="drawer-actions">
+                        <a href="#" class="btn btn-gold" id="drawer-contact-btn">Contact Agent</a>
+                        <a href="property.html" class="btn btn-outline" id="drawer-view-btn">View Full Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
